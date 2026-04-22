@@ -1,0 +1,2595 @@
+Core Mission
+Visitors should feel delight, curiosity, and trust within 3 seconds.
+The design must not look AI‑generated – add human‑touch details, organic spacing, custom micro‑interactions, and an immersive atmosphere.
+No dark theme – keep the background light, airy, with soft gradients.
+Mobile‑first (90% users on phone), but desktop has its own distinct layout (not just a stretched mobile version).
+Design Style – Liquid Glass + Glassmorphism + 3D Immersion
+Glass cards: backdrop-filter: blur(20px), semi‑transparent white backgrounds, subtle borders, soft shadows.
+Background: Light gradient with animated, slow‑moving 3D‑like blobs (soft indigo, emerald, rose) that create depth.
+3D & immersive elements: Use subtle 3D transforms on cards (e.g., slight tilt on hover), parallax scrolling effects, and layered depth (z‑index stacks). Do NOT use heavy WebGL – pure CSS 3D transforms and smooth transitions.
+Micro‑interactions: Hover lifts, button ripple, smooth scroll‑triggered reveals, typing‑like entrance for hero text, animated icons.
+Animations & Motion (Make it memorable)
+Hero section: Text fades in with a staggered word animation, a floating 3D chat bubble that wobbles gently, and a live‑like message counter that ticks up.
+Scroll effects: Sections fade up with a subtle parallax (background blobs move slower than content). Cards slide in from edges.
+Hover effects: Cards lift with a 3D rotation (transform: perspective(800px) rotateX(2deg) rotateY(2deg)), border glow intensifies, icon spins.
+No gimmicks: No confetti, no flower rain, no cartoon explosions – keep it premium and professional.
+Content Sections (Claude, you decide the exact structure, but include these)
+Hero – Headline, subheadline, two CTAs ("Start Free Trial", "See Features"). An abstract 3D chat preview (CSS‑only, no external images) showing message bubbles appearing with a typing indicator.
+Features Grid – 6–8 features (Meta Verified, Chatbot, Campaigns, Analytics, API, Team, etc.). Each as a glass card with icon, title, short description. On mobile: 2 columns, desktop: 3–4 columns. Hover lift + 3D tilt.
+Pricing Section – Use the existing Laravel helpers (getPaidPlans(), formatAmount(), etc.) – but design the visual cards. Do NOT hardcode prices. Show 3 plans (BASIC, PRO, ENTERPRISE). Highlight the most popular plan with a subtle animated gradient border.
+Footer – Simple glass footer with links and copyright.
+Mobile vs Desktop – Separate Layouts
+Mobile (≤640px): Single column, bottom navigation (not needed on home page, but keep top nav hamburger). Cards stack. Touch targets ≥44px.
+Desktop (≥1024px): Multi‑column, side navigation or top nav, larger cards, hover effects, parallax blobs.
+What Claude Design must deliver
+A high‑fidelity prototype with at least two artboards: Mobile (390×844) and Desktop (1440×900).
+Developer Handoff card with design tokens (colors, glass values, spacing, animation specs, breakpoints).
+No placeholder text – use realistic copy for a WhatsApp SaaS.
+No dark theme – keep it light, bright, premium.
+No copy‑paste from templates – invent an original layout and motion language.
+Proceed. Create a home page that visitors will remember and share.
+
+Make professional Home Page UI Don't use emojys cartoons style avoide emojes
+
+
+model avatar
+I'll create a stunning, professional MetaAdsFlow homepage with liquid glass design, 3D immersion, and memorable micro-interactions.
+
+
+    
+    
+    MetaAdsFlow – WhatsApp Business API Platform
+    
+    
+        /* ==================== DESIGN TOKENS ==================== */
+        :root {
+            --color-primary: #4F46E5;
+            --color-primary-light: #818CF8;
+            --color-primary-dark: #3730A3;
+            --color-emerald: #10B981;
+            --color-emerald-light: #34D399;
+            --color-rose: #F43F5E;
+            --color-rose-light: #FB7185;
+            --color-amber: #F59E0B;
+            --color-slate-900: #0F172A;
+            --color-slate-800: #1E293B;
+            --color-slate-700: #334155;
+            --color-slate-600: #475569;
+            --color-slate-500: #64748B;
+            --color-slate-400: #94A3B8;
+            --color-slate-300: #CBD5E1;
+            --color-slate-200: #E2E8F0;
+            --color-slate-100: #F1F5F9;
+            --color-slate-50: #F8FAFC;
+            --glass-bg: rgba(255, 255, 255, 0.65);
+            --glass-bg-hover: rgba(255, 255, 255, 0.82);
+            --glass-border: rgba(255, 255, 255, 0.45);
+            --glass-border-hover: rgba(255, 255, 255, 0.7);
+            --glass-blur: 20px;
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.04);
+            --glass-shadow-hover: 0 20px 60px rgba(79, 70, 229, 0.12), 0 8px 24px rgba(0, 0, 0, 0.06);
+            --radius-sm: 12px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-spring: 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* ==================== RESET & BASE ==================== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--color-slate-800);
+            background: #F0F2F8;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ==================== BACKGROUND CANVAS ==================== */
+        .bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+            background: linear-gradient(135deg, #F5F3FF 0%, #EEF2FF 25%, #F0FDF4 50%, #FFF1F2 75%, #F8FAFC 100%);
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.5;
+            will-change: transform;
+        }
+
+        .blob-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(129, 140, 248, 0.4) 0%, rgba(129, 140, 248, 0) 70%);
+            top: -10%;
+            left: -10%;
+            animation: blobFloat1 25s ease-in-out infinite;
+        }
+
+        .blob-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(52, 211, 153, 0.35) 0%, rgba(52, 211, 153, 0) 70%);
+            top: 30%;
+            right: -8%;
+            animation: blobFloat2 30s ease-in-out infinite;
+        }
+
+        .blob-3 {
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(251, 113, 133, 0.3) 0%, rgba(251, 113, 133, 0) 70%);
+            bottom: 10%;
+            left: 20%;
+            animation: blobFloat3 28s ease-in-out infinite;
+        }
+
+        .blob-4 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(196, 181, 253, 0.35) 0%, rgba(196, 181, 253, 0) 70%);
+            top: 60%;
+            left: 60%;
+            animation: blobFloat4 22s ease-in-out infinite;
+        }
+
+        .blob-5 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(110, 231, 183, 0.3) 0%, rgba(110, 231, 183, 0) 70%);
+            top: 10%;
+            right: 30%;
+            animation: blobFloat5 26s ease-in-out infinite;
+        }
+
+        @keyframes blobFloat1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(80px, 60px) scale(1.1); }
+            50% { transform: translate(30px, 120px) scale(0.95); }
+            75% { transform: translate(-40px, 40px) scale(1.05); }
+        }
+
+        @keyframes blobFloat2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(-60px, 80px) scale(1.08); }
+            50% { transform: translate(-100px, 20px) scale(0.92); }
+            75% { transform: translate(-30px, -50px) scale(1.03); }
+        }
+
+        @keyframes blobFloat3 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(70px, -60px) scale(1.06); }
+            66% { transform: translate(-50px, -30px) scale(0.97); }
+        }
+
+        @keyframes blobFloat4 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-80px, -60px) scale(1.12); }
+        }
+
+        @keyframes blobFloat5 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(40px, 70px) scale(0.95); }
+            66% { transform: translate(-60px, 30px) scale(1.08); }
+        }
+
+        /* ==================== MAIN CONTENT WRAPPER ==================== */
+        .main-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ==================== NAVIGATION ==================== */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 12px 20px;
+            transition: var(--transition-smooth);
+        }
+
+        .nav.scrolled {
+            padding: 8px 20px;
+        }
+
+        .nav-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--glass-shadow);
+            transition: var(--transition-smooth);
+        }
+
+        .nav.scrolled .nav-inner {
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--color-slate-900);
+        }
+
+        .nav-logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-emerald));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-logo-icon::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 18px;
+            height: 18px;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            clip-path: polygon(0% 15%, 15% 0%, 50% 30%, 85% 0%, 100% 15%, 70% 50%, 100% 85%, 85% 100%, 50% 70%, 15% 100%, 0% 85%, 30% 50%);
+        }
+
+        .nav-logo-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        .nav-logo-text {
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: -0.3px;
+        }
+
+        .nav-logo-text span {
+            color: var(--color-primary);
+        }
+
+        .nav-links {
+            display: none;
+            list-style: none;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--color-slate-600);
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: var(--radius-sm);
+            transition: var(--transition-fast);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-primary);
+            background: rgba(79, 70, 229, 0.06);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-sans);
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-primary), #6366F1);
+            color: white;
+            box-shadow: 0 4px 16px rgba(79, 70, 229, 0.3);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 8px 30px rgba(79, 70, 229, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary .btn-ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple {
+            to { transform: scale(4); opacity: 0; }
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--color-slate-700);
+            border: 1px solid var(--color-slate-200);
+        }
+
+        .btn-ghost:hover {
+            background: rgba(255, 255, 255, 0.8);
+            border-color: var(--color-slate-300);
+            transform: translateY(-1px);
+        }
+
+        .btn-glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            color: var(--color-slate-700);
+        }
+
+        .btn-glass:hover {
+            background: var(--glass-bg-hover);
+            border-color: var(--glass-border-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-lg {
+            padding: 14px 28px;
+            font-size: 15px;
+            border-radius: var(--radius-md);
+        }
+
+        .btn-icon {
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            border-radius: 10px;
+        }
+
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: var(--transition-fast);
+        }
+
+        .hamburger:hover {
+            background: rgba(0, 0, 0, 0.04);
+        }
+
+        .hamburger span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: var(--color-slate-700);
+            border-radius: 2px;
+            transition: var(--transition-smooth);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(4px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(4px, -5px);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 999;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition-smooth);
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .mobile-menu a {
+            text-decoration: none;
+            color: var(--color-slate-800);
+            font-size: 20px;
+            font-weight: 600;
+            padding: 12px 32px;
+            border-radius: var(--radius-md);
+            transition: var(--transition-fast);
+            transform: translateY(20px);
+            opacity: 0;
+        }
+
+        .mobile-menu.active a {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .mobile-menu.active a:nth-child(1) { transition-delay: 0.05s; }
+        .mobile-menu.active a:nth-child(2) { transition-delay: 0.1s; }
+        .mobile-menu.active a:nth-child(3) { transition-delay: 0.15s; }
+        .mobile-menu.active a:nth-child(4) { transition-delay: 0.2s; }
+        .mobile-menu.active a:nth-child(5) { transition-delay: 0.25s; }
+        .mobile-menu.active a:nth-child(6) { transition-delay: 0.3s; }
+
+        .mobile-menu a:hover {
+            color: var(--color-primary);
+            background: rgba(79, 70, 229, 0.06);
+        }
+
+        /* ==================== SECTION COMMONS ==================== */
+        .section {
+            padding: 80px 20px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: 16px;
+            letter-spacing: 0.3px;
+        }
+
+        .section-label .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--color-emerald);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        .section-title {
+            font-size: clamp(28px, 5vw, 44px);
+            font-weight: 800;
+            color: var(--color-slate-900);
+            line-height: 1.15;
+            letter-spacing: -0.5px;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: clamp(15px, 2.5vw, 18px);
+            color: var(--color-slate-500);
+            line-height: 1.65;
+            max-width: 560px;
+        }
+
+        /* Fade-in on scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+        .reveal-delay-5 { transition-delay: 0.5s; }
+        .reveal-delay-6 { transition-delay: 0.6s; }
+
+        /* ==================== HERO SECTION ==================== */
+        .hero {
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 120px 20px 60px;
+            max-width: 1280px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 16px 8px 8px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            border-radius: 100px;
+            margin-bottom: 24px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--color-slate-600);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .hero-badge-icon {
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, var(--color-emerald), var(--color-emerald-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-badge-icon svg {
+            width: 14px;
+            height: 14px;
+            fill: white;
+        }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-title {
+            font-size: clamp(32px, 7vw, 64px);
+            font-weight: 900;
+            color: var(--color-slate-900);
+            line-height: 1.08;
+            letter-spacing: -1.5px;
+            margin-bottom: 20px;
+        }
+
+        .hero-title .word {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: wordReveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes wordReveal {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-title .gradient-text {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-emerald) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: clamp(16px, 2.5vw, 19px);
+            color: var(--color-slate-500);
+            line-height: 1.7;
+            max-width: 520px;
+            margin-bottom: 32px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .hero-stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-stat-value {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--color-slate-900);
+            font-variant-numeric: tabular-nums;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-stat-label {
+            font-size: 13px;
+            color: var(--color-slate-400);
+            font-weight: 500;
+        }
+
+        /* Hero Chat Preview */
+        .hero-visual {
+            margin-top: 48px;
+            position: relative;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeInUp 1s 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .chat-preview {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            padding: 20px;
+            max-width: 400px;
+            box-shadow: var(--glass-shadow);
+            position: relative;
+        }
+
+        .chat-preview::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 20%;
+            right: 20%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--color-primary-light), transparent);
+            border-radius: 2px;
+        }
+
+        .chat-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            margin-bottom: 16px;
+        }
+
+        .chat-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--color-emerald), #059669);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .chat-avatar svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        .chat-meta {
+            flex: 1;
+        }
+
+        .chat-name {
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--color-slate-800);
+        }
+
+        .chat-status {
+            font-size: 12px;
+            color: var(--color-emerald);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .chat-status .online-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--color-emerald);
+            border-radius: 50%;
+        }
+
+        .chat-messages {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .chat-msg {
+            max-width: 85%;
+            padding: 10px 14px;
+            border-radius: 16px;
+            font-size: 13px;
+            line-height: 1.45;
+            opacity: 0;
+            transform: translateY(10px) scale(0.95);
+            animation: msgAppear 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes msgAppear {
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .chat-msg.received {
+            align-self: flex-start;
+            background: white;
+            color: var(--color-slate-700);
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+        }
+
+        .chat-msg.sent {
+            align-self: flex-end;
+            background: linear-gradient(135deg, var(--color-primary), #6366F1);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .chat-msg:nth-child(1) { animation-delay: 1.5s; }
+        .chat-msg:nth-child(2) { animation-delay: 2.2s; }
+        .chat-msg:nth-child(3) { animation-delay: 3.0s; }
+        .chat-msg:nth-child(4) { animation-delay: 3.8s; }
+
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 12px 16px;
+            align-self: flex-start;
+            opacity: 0;
+            animation: msgAppear 0.5s 4.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .typing-indicator span {
+            width: 7px;
+            height: 7px;
+            background: var(--color-slate-300);
+            border-radius: 50%;
+            animation: typingBounce 1.4s ease-in-out infinite;
+        }
+
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typingBounce {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+            30% { transform: translateY(-6px); opacity: 1; }
+        }
+
+        .chat-counter {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            background: linear-gradient(135deg, var(--color-primary), #6366F1);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 700;
+            font-variant-numeric: tabular-nums;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+            animation: counterPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes counterPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* ==================== TRUSTED BY ==================== */
+        .trusted {
+            padding: 40px 20px 60px;
+            max-width: 1280px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .trusted-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--color-slate-400);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 24px;
+        }
+
+        .trusted-logos {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 32px;
+            opacity: 0.4;
+        }
+
+        .trusted-logo {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--color-slate-400);
+            letter-spacing: -0.5px;
+        }
+
+        /* ==================== FEATURES ==================== */
+        .features {
+            padding: 80px 20px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .features-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .features-header .section-subtitle {
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        .feature-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 28px 24px;
+            transition: all var(--transition-smooth);
+            cursor: default;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--feature-accent, var(--color-primary-light)), transparent);
+            opacity: 0;
+            transition: var(--transition-smooth);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-card:hover {
+            background: var(--glass-bg-hover);
+            border-color: var(--glass-border-hover);
+            box-shadow: var(--glass-shadow-hover);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+            transition: var(--transition-smooth);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.08) rotate(-3deg);
+        }
+
+        .feature-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .feature-icon.indigo {
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.12), rgba(99, 102, 241, 0.06));
+        }
+
+        .feature-icon.indigo svg { stroke: var(--color-primary); fill: none; }
+
+        .feature-icon.emerald {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(52, 211, 153, 0.06));
+        }
+
+        .feature-icon.emerald svg { stroke: var(--color-emerald); fill: none; }
+
+        .feature-icon.rose {
+            background: linear-gradient(135deg, rgba(244, 63, 94, 0.12), rgba(251, 113, 133, 0.06));
+        }
+
+        .feature-icon.rose svg { stroke: var(--color-rose); fill: none; }
+
+        .feature-icon.amber {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(251, 191, 36, 0.06));
+        }
+
+        .feature-icon.amber svg { stroke: var(--color-amber); fill: none; }
+
+        .feature-icon.blue {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(96, 165, 250, 0.06));
+        }
+
+        .feature-icon.blue svg { stroke: #3B82F6; fill: none; }
+
+        .feature-icon.violet {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.12), rgba(167, 139, 250, 0.06));
+        }
+
+        .feature-icon.violet svg { stroke: #8B5CF6; fill: none; }
+
+        .feature-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--color-slate-800);
+            margin-bottom: 8px;
+            letter-spacing: -0.2px;
+        }
+
+        .feature-desc {
+            font-size: 14px;
+            color: var(--color-slate-500);
+            line-height: 1.6;
+        }
+
+        /* ==================== HOW IT WORKS ==================== */
+        .how-it-works {
+            padding: 80px 20px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .how-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .how-header .section-subtitle {
+            margin: 0 auto;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            position: relative;
+        }
+
+        .step-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 32px 24px;
+            text-align: center;
+            transition: all var(--transition-smooth);
+            position: relative;
+        }
+
+        .step-card:hover {
+            background: var(--glass-bg-hover);
+            box-shadow: var(--glass-shadow-hover);
+            transform: translateY(-4px);
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-primary), #6366F1);
+            color: white;
+            font-size: 18px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 4px 16px rgba(79, 70, 229, 0.25);
+        }
+
+        .step-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--color-slate-800);
+            margin-bottom: 10px;
+            letter-spacing: -0.3px;
+        }
+
+        .step-desc {
+            font-size: 14px;
+            color: var(--color-slate-500);
+            line-height: 1.6;
+        }
+
+        .step-connector {
+            display: none;
+        }
+
+        /* ==================== PRICING ==================== */
+        .pricing {
+            padding: 80px 20px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .pricing-header .section-subtitle {
+            margin: 0 auto;
+        }
+
+        .pricing-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .pricing-toggle-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--color-slate-500);
+        }
+
+        .pricing-toggle-label.active {
+            color: var(--color-slate-800);
+        }
+
+        .toggle-switch {
+            width: 48px;
+            height: 26px;
+            background: var(--color-slate-200);
+            border-radius: 13px;
+            position: relative;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+
+        .toggle-switch.active {
+            background: var(--color-primary);
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            top: 3px;
+            left: 3px;
+            transition: var(--transition-smooth);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .toggle-switch.active::after {
+            left: 25px;
+        }
+
+        .pricing-save {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--color-emerald);
+            background: rgba(16, 185, 129, 0.08);
+            padding: 4px 10px;
+            border-radius: 100px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        .price-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            padding: 32px 24px;
+            transition: all var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .price-card:hover {
+            background: var(--glass-bg-hover);
+            box-shadow: var(--glass-shadow-hover);
+            transform: translateY(-4px);
+        }
+
+        .price-card.popular {
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+        }
+
+        .price-card.popular::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-emerald), var(--color-primary-light), var(--color-emerald-light));
+            background-size: 300% 300%;
+            border-radius: calc(var(--radius-xl) + 2px);
+            z-index: -1;
+            animation: gradientBorder 4s ease infinite;
+        }
+
+        .price-card.popular::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(20px);
+            border-radius: calc(var(--radius-xl) - 2px);
+            z-index: -1;
+        }
+
+        @keyframes gradientBorder {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: linear-gradient(135deg, var(--color-primary), #6366F1);
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 100px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .price-plan-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--color-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .price-headline {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--color-slate-800);
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .price-amount {
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+            margin-bottom: 4px;
+        }
+
+        .price-currency {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--color-slate-700);
+        }
+
+        .price-value {
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--color-slate-900);
+            letter-spacing: -2px;
+            line-height: 1;
+        }
+
+        .price-period {
+            font-size: 14px;
+            color: var(--color-slate-400);
+            font-weight: 500;
+        }
+
+        .price-billing {
+            font-size: 13px;
+            color: var(--color-slate-400);
+            margin-bottom: 24px;
+        }
+
+        .price-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .price-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 14px;
+            color: var(--color-slate-600);
+            line-height: 1.4;
+        }
+
+        .price-features li svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .price-features li svg.check { stroke: var(--color-emerald); fill: none; }
+
+        .price-cta {
+            width: 100%;
+        }
+
+        /* ==================== TESTIMONIALS ==================== */
+        .testimonials {
+            padding: 80px 20px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .testimonials-header .section-subtitle {
+            margin: 0 auto;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        .testimonial-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 28px 24px;
+            transition: all var(--transition-smooth);
+        }
+
+        .testimonial-card:hover {
+            background: var(--glass-bg-hover);
+            box-shadow: var(--glass-shadow-hover);
+            transform: translateY(-4px);
+        }
+
+        .testimonial-stars {
+            display: flex;
+            gap: 2px;
+            margin-bottom: 16px;
+        }
+
+        .testimonial-stars svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--color-amber);
+        }
+
+        .testimonial-text {
+            font-size: 14px;
+            color: var(--color-slate-600);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .testimonial-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 15px;
+            color: white;
+        }
+
+        .testimonial-info {
+            flex: 1;
+        }
+
+        .testimonial-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--color-slate-800);
+        }
+
+        .testimonial-role {
+            font-size: 12px;
+            color: var(--color-slate-400);
+        }
+
+        /* ==================== CTA SECTION ==================== */
+        .cta-section {
+            padding: 80px 20px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .cta-card {
+            background: linear-gradient(135deg, var(--color-primary), #4338CA, #6366F1);
+            border-radius: var(--radius-xl);
+            padding: 56px 32px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .cta-card::after {
+            content: '';
+            position: absolute;
+            bottom: -40%;
+            left: -20%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(52, 211, 153, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .cta-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-title {
+            font-size: clamp(24px, 5vw, 40px);
+            font-weight: 800;
+            color: white;
+            line-height: 1.15;
+            letter-spacing: -0.5px;
+            margin-bottom: 16px;
+        }
+
+        .cta-desc {
+            font-size: clamp(14px, 2vw, 17px);
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.6;
+            max-width: 480px;
+            margin: 0 auto 32px;
+        }
+
+        .cta-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--color-primary);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-white:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-white {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-outline-white:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-1px);
+        }
+
+        /* ==================== FOOTER ==================== */
+        .footer {
+            padding: 48px 20px 24px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .footer-inner {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            padding: 40px 24px 24px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .footer-brand {
+            max-width: 280px;
+        }
+
+        .footer-brand .nav-logo {
+            margin-bottom: 12px;
+        }
+
+        .footer-brand-desc {
+            font-size: 14px;
+            color: var(--color-slate-500);
+            line-height: 1.6;
+        }
+
+        .footer-col h4 {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--color-slate-800);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 16px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-col ul a {
+            text-decoration: none;
+            color: var(--color-slate-500);
+            font-size: 14px;
+            transition: var(--transition-fast);
+        }
+
+        .footer-col ul a:hover {
+            color: var(--color-primary);
+        }
+
+        .footer-divider {
+            height: 1px;
+            background: rgba(0, 0, 0, 0.06);
+            margin-bottom: 20px;
+        }
+
+        .footer-bottom {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            text-align: center;
+        }
+
+        .footer-copyright {
+            font-size: 13px;
+            color: var(--color-slate-400);
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 8px;
+        }
+
+        .footer-social-link {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            color: var(--color-slate-400);
+            transition: var(--transition-fast);
+        }
+
+        .footer-social-link:hover {
+            background: rgba(79, 70, 229, 0.08);
+            color: var(--color-primary);
+        }
+
+        .footer-social-link svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* ==================== MOBILE: 2-col features ==================== */
+        @media (min-width: 420px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* ==================== TABLET ==================== */
+        @media (min-width: 768px) {
+            .section { padding: 100px 32px; }
+            .hero { padding: 140px 32px 80px; }
+            .features { padding: 100px 32px; }
+            .pricing { padding: 100px 32px; }
+            .testimonials { padding: 100px 32px; }
+
+            .pricing-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .steps {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1.5fr repeat(3, 1fr);
+            }
+
+            .footer-bottom {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+
+        /* ==================== DESKTOP ==================== */
+        @media (min-width: 1024px) {
+            .hamburger { display: none; }
+
+            .nav-links {
+                display: flex;
+            }
+
+            .nav-inner {
+                padding: 10px 12px 10px 24px;
+            }
+
+            .hero {
+                flex-direction: row;
+                align-items: center;
+                gap: 60px;
+                padding: 0 48px;
+                min-height: 100vh;
+            }
+
+            .hero-content {
+                flex: 1;
+            }
+
+            .hero-visual {
+                flex: 1;
+                margin-top: 0;
+                display: flex;
+                justify-content: flex-end;
+            }
+
+            .chat-preview {
+                max-width: 380px;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+
+            .feature-card {
+                padding: 32px 28px;
+            }
+
+            .feature-card:hover {
+                transform: perspective(800px) rotateX(2deg) rotateY(2deg) translateY(-8px);
+            }
+
+            .price-card:hover {
+                transform: perspective(800px) rotateX(1deg) rotateY(1deg) translateY(-8px);
+            }
+
+            .testimonial-card:hover {
+                transform: perspective(800px) rotateX(1deg) rotateY(1deg) translateY(-6px);
+            }
+
+            .step-card:hover {
+                transform: perspective(800px) rotateX(2deg) translateY(-6px);
+            }
+
+            .testimonials-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .step-connector {
+                display: block;
+            }
+
+            .section { padding: 120px 48px; }
+            .features { padding: 120px 48px; }
+            .how-it-works { padding: 120px 48px; }
+            .pricing { padding: 120px 48px; }
+            .testimonials { padding: 120px 48px; }
+            .cta-section { padding: 120px 48px; }
+            .footer { padding: 64px 48px 32px; }
+
+            .cta-card {
+                padding: 80px 48px;
+            }
+
+            .footer-inner {
+                padding: 56px 48px 32px;
+            }
+
+            .blob-1 { width: 800px; height: 800px; }
+            .blob-2 { width: 700px; height: 700px; }
+            .blob-3 { width: 600px; height: 600px; }
+        }
+
+        /* ==================== LARGE DESKTOP ==================== */
+        @media (min-width: 1280px) {
+            .features-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* ==================== ACCESSIBILITY ==================== */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .blob { animation: none !important; }
+        }
+
+        /* Scroll bar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-slate-300);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-slate-400);
+        }
+
+        /* Selection */
+        ::selection {
+            background: rgba(79, 70, 229, 0.15);
+            color: var(--color-primary-dark);
+        }
+    
+
+
+
+    
+    
+        
+        
+        
+        
+        
+    
+
+    
+    
+        Features
+        How It Works
+        Pricing
+        Reviews
+        Start Free Trial
+    
+
+    
+    
+
+        
+        
+            
+                
+                    
+                        
+                    
+                    MetaAdsFlow
+                
+
+                
+                    Features
+                    How It Works
+                    Pricing
+                    Reviews
+                
+
+                
+                    Sign In
+                    Start Free Trial
+                    
+                        
+                        
+                        
+                    
+                
+            
+        
+
+        
+        
+            
+                
+                    
+                        
+                    
+                    Meta Verified Business API Partner
+                
+
+                
+                    Scale
+                    your
+                    business
+                    with
+                    WhatsApp
+                    automation
+                
+
+                
+                    Send campaigns, automate conversations, and convert leads at scale. 
+                    The complete WhatsApp Business API platform trusted by growing teams worldwide.
+                
+
+                
+                    
+                        Start Free Trial
+                        
+                    
+                    
+                        See Features
+                    
+                
+
+                
+                    
+                        2.4M+
+                        Messages Sent
+                    
+                    
+                        98.7%
+                        Delivery Rate
+                    
+                    
+                        1,200+
+                        Active Businesses
+                    
+                
+            
+
+            
+                
+                    12,847 sent today
+                    
+                        
+                            
+                        
+                        
+                            MetaAdsFlow Bot
+                            
+                                
+                                Online
+                            
+                        
+                    
+                    
+                        
+                            Hi! Welcome to our store. How can I help you today?
+                        
+                        
+                            I'd like to check my order status
+                        
+                        
+                            Sure! Your order #4821 is out for delivery. Expected arrival: Today by 6 PM.
+                        
+                        
+                            That's great, thank you!
+                        
+                        
+                            
+                            
+                            
+                        
+                    
+                
+            
+        
+
+        
+        
+            Trusted by teams at
+            
+                Freshworks
+                Razorpay
+                Meesho
+                PhonePe
+                Swiggy
+                Lenskart
+            
+        
+
+        
+        
+            
+                
+                    
+                    Platform Capabilities
+                
+                Everything you need tomaster WhatsApp marketing
+                
+                    From verified business profiles to intelligent chatbots, MetaAdsFlow gives you enterprise-grade tools without the complexity.
+                
+            
+
+            
+                
+                
+                    
+                        
+                    
+                    Meta Verified Badge
+                    Get the official green verification badge. Build instant trust with every message you send to customers.
+                
+
+                
+                
+                    
+                        
+                    
+                    Smart Chatbot Builder
+                    Design conversational flows with our visual builder. Automate FAQs, bookings, and support without code.
+                
+
+                
+                
+                    
+                        
+                    
+                    Broadcast Campaigns
+                    Send template messages to thousands at once. Segment audiences, schedule sends, and track every delivery.
+                
+
+                
+                
+                    
+                        
+                    
+                    Real-Time Analytics
+                    Monitor sent, delivered, read, and replied metrics live. Export reports and optimize your messaging strategy.
+                
+
+                
+                
+                    
+                        
+                    
+                    REST API Access
+                    Integrate WhatsApp into your existing stack. Full REST API with webhooks, SDKs, and detailed documentation.
+                
+
+                
+                
+                    
+                        
+                    
+                    Team Collaboration
+                    Assign conversations, set roles, and manage your entire team from one dashboard. No message left unanswered.
+                
+
+                
+                
+                    
+                        
+                    
+                    Template Manager
+                    Create, submit, and manage message templates. Get faster approvals with our compliance-checked suggestions.
+                
+
+                
+                
+                    
+                        
+                    
+                    Enterprise Security
+                    End-to-end encryption, SOC 2 compliance, and role-based access controls. Your data stays protected, always.
+                
+            
+        
+
+        
+        
+            
+                
+                    
+                    Getting Started
+                
+                Up and runningin three steps
+                
+                    No complex setup. No technical expertise required. Connect your WhatsApp Business number and start sending in minutes.
+                
+            
+
+            
+                
+                    1
+                    Connect Your Number
+                    Sign up and link your WhatsApp Business number through our guided setup. We handle the Meta verification process for you.
+                
+
+                
+                    2
+                    Build Your Flows
+                    Create message templates, design chatbot flows, and import your contact lists. Our template library gets you started fast.
+                
+
+                
+                    3
+                    Launch and Scale
+                    Send your first campaign, monitor results in real-time, and scale to millions of messages. We grow with your business.
+                
+            
+        
+
+        
+        
+            
+                
+                    
+                    Simple Pricing
+                
+                Plans that scalewith your growth
+                
+                    Start free, upgrade when ready. No hidden fees. Cancel anytime. Every plan includes our core WhatsApp API features.
+                
+
+                
+                    Monthly
+                    
+                    Yearly
+                    Save 20%
+                
+            
+
+            
+                
+                
+                    Basic
+                    For small businesses getting started with WhatsApp
+                    
+                        $
+                        29
+                    
+                    per month
+                    Billed monthly
+                    
+                        
+                            
+                            1,000 conversations/month
+                        
+                        
+                            
+                            1 WhatsApp number
+                        
+                        
+                            
+                            Basic chatbot builder
+                        
+                        
+                            
+                            Campaign broadcasts
+                        
+                        
+                            
+                            2 team members
+                        
+                        
+                            
+                            Email support
+                        
+                    
+                    Get Started
+                
+
+                
+                
+                    Most Popular
+                    Pro
+                    For growing teams that need automation and scale
+                    
+                        $
+                        79
+                    
+                    per month
+                    Billed monthly
+                    
+                        
+                            
+                            10,000 conversations/month
+                        
+                        
+                            
+                            3 WhatsApp numbers
+                        
+                        
+                            
+                            Advanced chatbot with AI
+                        
+                        
+                            
+                            Scheduled campaigns
+                        
+                        
+                            
+                            10 team members
+                        
+                        
+                            
+                            REST API access
+                        
+                        
+                            
+                            Priority support
+                        
+                    
+                    Start Free Trial
+                
+
+                
+                
+                    Enterprise
+                    For large organizations with custom requirements
+                    
+                        $
+                        199
+                    
+                    per month
+                    Billed monthly
+                    
+                        
+                            
+                            Unlimited conversations
+                        
+                        
+                            
+                            Unlimited WhatsApp numbers
+                        
+                        
+                            
+                            Custom chatbot integrations
+                        
+                        
+                            
+                            Advanced analytics & reports
+                        
+                        
+                            
+                            Unlimited team members
+                        
+                        
+                            
+                            Dedicated account manager
+                        
+                        
+                            
+                            SLA guarantee & SSO
+                        
+                    
+                    Contact Sales
+                
+            
+        
+
+        
+        
+            
+                
+                    
+                    What Teams Are Saying
+                
+                Trusted by businessesacross industries
+                
+                    See how teams are using MetaAdsFlow to transform their customer communication and drive measurable results.
+                
+            
+
+            
+                
+                    
+                        
+                        
+                        
+                        
+                        
+                    
+                    "We replaced three separate tools with MetaAdsFlow. Campaign broadcasts, automated replies, and analytics all in one place. Our response time dropped from 4 hours to under 3 minutes."
+                    
+                        RK
+                        
+                            Rajesh Kumar
+                            Head of Growth, ShopEasy
+                        
+                    
+                
+
+                
+                    
+                        
+                        
+                        
+                        
+                        
+                    
+                    "The chatbot builder alone saved us 120 hours per month in customer support. Setup was straightforward and the API documentation is genuinely well-written. Rare for this space."
+                    
+                        SP
+                        
+                            Sarah Patel
+                            CTO, FinanceHub
+                        
+                    
+                
+
+                
+                    
+                        
+                        
+                        
+                        
+                        
+                    
+                    "We send over 50,000 order updates daily through MetaAdsFlow. The delivery rate is consistently above 98% and the team inbox keeps our support organized across 15 agents."
+                    
+                        AM
+                        
+                            Arjun Mehta
+                            Operations Lead, QuickDeliver
+                        
+                    
+                
+            
+        
+
+        
+        
+            
+                Ready to transform yourcustomer conversations?
+                Join 1,200+ businesses already using MetaAdsFlow to reach customers on WhatsApp. Start your free trial today — no credit card required.
+                
+                    
+                        Start Free Trial
+                        
+                    
+                    Talk to Sales
+                
+            
+        
+
+        
+        
+            
+                
+                    
+                        
+                            
+                                
+                            
+                            MetaAdsFlow
+                        
+                        The complete WhatsApp Business API platform for modern teams. Send, automate, and grow.
+                    
+
+                    
+                        Product
+                        
+                            Features
+                            Pricing
+                            Integrations
+                            API Docs
+                            Changelog
+                        
+                    
+
+                    
+                        Company
+                        
+                            About
+                            Blog
+                            Careers
+                            Contact
+                            Partners
+                        
+                    
+
+                    
+                        Legal
+                        
+                            Privacy Policy
+                            Terms of Service
+                            Security
+                            GDPR
+                        
+                    
+                
+
+                
+
+                
+                    2025 MetaAdsFlow. All rights reserved.
+                    
+                        
+                            
+                        
+                        
+                            
+                        
+                        
+                            
+                        
+                    
+                
+            
+        
+    
+
+    
+        // ==================== SCROLL REVEAL ====================
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -40px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // ==================== NAV SCROLL ====================
+        const nav = document.getElementById('nav');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.scrollY;
+            if (currentScroll > 60) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+            lastScroll = currentScroll;
+        });
+
+        // ==================== MOBILE MENU ====================
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        function toggleMobileMenu() {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        function closeMobileMenu() {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // ==================== DESKTOP: Show Sign In ====================
+        const navCta = document.getElementById('navCta');
+        const signInBtn = navCta?.previousElementSibling;
+
+        function checkDesktop() {
+            if (window.innerWidth >= 1024 && signInBtn) {
+                signInBtn.style.display = 'inline-flex';
+            } else if (signInBtn) {
+                signInBtn.style.display = 'none';
+            }
+        }
+
+        checkDesktop();
+        window.addEventListener('resize', checkDesktop);
+
+        // ==================== PRICING TOGGLE ====================
+        let isYearly = false;
+
+        function toggleBilling() {
+            isYearly = !isYearly;
+            const toggle = document.getElementById('billingToggle');
+            const monthlyLabel = document.getElementById('monthlyLabel');
+            const yearlyLabel = document.getElementById('yearlyLabel');
+
+            toggle.classList.toggle('active', isYearly);
+            monthlyLabel.classList.toggle('active', !isYearly);
+            yearlyLabel.classList.toggle('active', isYearly);
+
+            document.querySelectorAll('.price-value').forEach(el => {
+                const monthly = el.dataset.monthly;
+                const yearly = el.dataset.yearly;
+                el.textContent = isYearly ? yearly : monthly;
+            });
+
+            document.querySelectorAll('.price-billing').forEach(el => {
+                const monthly = el.dataset.monthly;
+                const yearly = el.dataset.yearly;
+                el.textContent = isYearly ? yearly : monthly;
+            });
+        }
+
+        // ==================== LIVE COUNTER ====================
+        const liveCounter = document.getElementById('liveCounter');
+        let count = 12847;
+
+        function updateCounter() {
+            count += Math.floor(Math.random() * 5) + 1;
+            liveCounter.textContent = count.toLocaleString() + ' sent today';
+        }
+
+        setInterval(updateCounter, 3000);
+
+        // ==================== MESSAGE COUNTER ANIMATION ====================
+        const msgCounter = document.getElementById('msgCounter');
+        let msgCount = 2400000;
+        let targetCount = 2400000;
+        let msgAnimated = false;
+
+        const msgObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !msgAnimated) {
+                    msgAnimated = true;
+                    animateCount(0, targetCount, 2000);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        if (msgCounter) {
+            msgObserver.observe(msgCounter);
+        }
+
+        function animateCount(start, end, duration) {
+            const startTime = performance.now();
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 4);
+                const current = Math.floor(start + (end - start) * eased);
+
+                if (current >= 1000000) {
+                    msgCounter.textContent = (current / 1000000).toFixed(1) + 'M+';
+                } else if (current >= 1000) {
+                    msgCounter.textContent = (current / 1000).toFixed(0) + 'K+';
+                } else {
+                    msgCounter.textContent = current + '+';
+                }
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+            requestAnimationFrame(update);
+        }
+
+        // ==================== BUTTON RIPPLE ====================
+        document.querySelectorAll('.btn-primary').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                ripple.classList.add('btn-ripple');
+                const rect = this.getBoundingClientRect();
+                ripple.style.left = (e.clientX - rect.left) + 'px';
+                ripple.style.top = (e.clientY - rect.top) + 'px';
+                ripple.style.width = ripple.style.height = Math.max(rect.width, rect.height) + 'px';
+                this.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // ==================== 3D CARD TILT (Desktop only) ====================
+        if (window.matchMedia('(min-width: 1024px)').matches) {
+            document.querySelectorAll('.feature-card, .price-card, .testimonial-card, .step-card').forEach(card => {
+                card.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = (y - centerY) / centerY * -3;
+                    const rotateY = (x - centerX) / centerX * 3;
+
+                    this.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                });
+            });
+        }
+
+        // ==================== PARALLAX BLOBS ====================
+        let ticking = false;
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    const scrollY = window.scrollY;
+                    const blobs = document.querySelectorAll('.blob');
+                    blobs.forEach((blob, i) => {
+                        const speed = 0.02 + (i * 0.008);
+                        blob.style.transform += '';
+                        const currentTransform = getComputedStyle(blob).transform;
+                        blob.style.marginTop = -(scrollY * speed) + 'px';
+                    });
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+    
+
+
+Developer Handoff — Design Tokens
+Color System
+Token	Value	Usage
+--color-primary	#4F46E5	CTAs, links, accents
+--color-emerald	#10B981	Success, verification
+--color-rose	#F43F5E	Alerts, emphasis
+--color-amber	#F59E0B	Stars, warnings
+Glass Values
+Property	Value
+Background	rgba(255,255,255,0.65)
+Blur	20px
+Border	rgba(255,255,255,0.45)
+Shadow	0 8px 32px rgba(0,0,0,0.06)
+Hover Shadow	0 20px 60px rgba(79,70,229,0.12)
+Spacing Scale
+12 → 16 → 20 → 24 → 32 → 40 → 48 → 56 → 80 → 120px
+
+Animation Specs
+Interaction	Duration	Easing
+Fast hover	200ms	ease
+Smooth transition	400ms	cubic-bezier(0.16,1,0.3,1)
+Spring bounce	600ms	cubic-bezier(0.34,1.56,0.64,1)
+Scroll reveal	800ms	cubic-bezier(0.16,1,0.3,1)
+3D card tilt	±3deg	Follows mouse position
+Breakpoints
+Name	Width	Layout
+Mobile	≤639px	1-2 columns, stacked
+Tablet	768px+	3-col pricing, grid footer
+Desktop	1024px+	Side-by-side hero, 3D tilt, nav links
+Large	1280px+	4-col features grid
