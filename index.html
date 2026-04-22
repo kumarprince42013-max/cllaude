@@ -1,6 +1,10 @@
-MetaAdsFlow – WhatsApp Business API Platform
-    
-    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>MetaAdsFlow – WhatsApp Business API Platform</title>
+    <style>
         /* ==================== DESIGN TOKENS ==================== */
         :root {
             --color-primary: #4F46E5;
@@ -1748,778 +1752,463 @@ MetaAdsFlow – WhatsApp Business API Platform
             background: rgba(79, 70, 229, 0.15);
             color: var(--color-primary-dark);
         }
-    
+    </style>
+</head>
+<body>
 
+<div class="bg-canvas">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="blob blob-4"></div>
+    <div class="blob blob-5"></div>
+</div>
 
+<div class="main-wrapper">
 
-    
-    
-        
-        
-        
-        
-        
-    
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">
+                <div class="nav-logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                    </svg>
+                </div>
+                <span class="nav-logo-text">Meta<span>AdsFlow</span></span>
+            </a>
 
-    
-    
-        Features
-        How It Works
-        Pricing
-        Reviews
-        Start Free Trial
-    
+            <ul class="nav-links">
+                <li><a href="#">Features</a></li>
+                <li><a href="#">How It Works</a></li>
+                <li><a href="#">Pricing</a></li>
+                <li><a href="#">Reviews</a></li>
+            </ul>
 
-    
-    
+            <div class="nav-actions">
+                <a href="#" class="btn btn-ghost" id="signInBtn">Sign In</a>
+                <a href="#" class="btn btn-primary" id="navCta">Start Free Trial</a>
+                <div class="hamburger" id="hamburger">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-        
-        
-            
-                
-                    
-                        
-                    
-                    MetaAdsFlow
-                
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#">Features</a>
+        <a href="#">How It Works</a>
+        <a href="#">Pricing</a>
+        <a href="#">Reviews</a>
+        <a href="#">Sign In</a>
+        <a href="#">Start Free Trial</a>
+    </div>
 
-                
-                    Features
-                    How It Works
-                    Pricing
-                    Reviews
-                
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <div class="hero-badge-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </div>
+                <span>Meta Verified Business API Partner</span>
+            </div>
+            <h1 class="hero-title">
+                <span class="word">Scale</span>
+                <span class="word">your</span>
+                <span class="word">business</span><br>
+                <span class="word">with</span>
+                <span class="word">WhatsApp</span>
+                <span class="word gradient-text">automation</span>
+            </h1>
+            <p class="hero-description">
+                Send campaigns, automate conversations, and convert leads at scale. The complete WhatsApp Business API platform trusted by growing teams worldwide.
+            </p>
+            <div class="hero-ctas">
+                <a href="#" class="btn btn-primary btn-lg">Start Free Trial</a>
+                <a href="#" class="btn btn-ghost btn-lg">See Features</a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="hero-stat-value" id="msgCounter">2.4M+</span>
+                    <span class="hero-stat-label">Messages Sent</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-value">98.7%</span>
+                    <span class="hero-stat-label">Delivery Rate</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-value">1,200+</span>
+                    <span class="hero-stat-label">Active Businesses</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="chat-preview">
+                <div class="chat-header">
+                    <div class="chat-avatar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <div class="chat-meta">
+                        <div class="chat-name">MetaAdsFlow Bot</div>
+                        <div class="chat-status"><span class="online-dot"></span> Online</div>
+                    </div>
+                    <div class="chat-counter" id="liveCounter">12,847 sent today</div>
+                </div>
+                <div class="chat-messages">
+                    <div class="chat-msg received">Hi! Welcome to our store. How can I help you today?</div>
+                    <div class="chat-msg sent">I'd like to check my order status</div>
+                    <div class="chat-msg received">Sure! Your order #4821 is out for delivery. Expected arrival: Today by 6 PM.</div>
+                    <div class="chat-msg sent">That's great, thank you!</div>
+                    <div class="typing-indicator"><span></span><span></span><span></span></div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                
-                    Sign In
-                    Start Free Trial
-                    
-                        
-                        
-                        
-                    
-                
-            
-        
+    <div class="trusted">
+        <div class="trusted-label">Trusted by teams at</div>
+        <div class="trusted-logos">
+            <span class="trusted-logo">Freshworks</span>
+            <span class="trusted-logo">Razorpay</span>
+            <span class="trusted-logo">Meesho</span>
+            <span class="trusted-logo">PhonePe</span>
+            <span class="trusted-logo">Swiggy</span>
+            <span class="trusted-logo">Lenskart</span>
+        </div>
+    </div>
 
-        
-        
-            
-                
-                    
-                        
-                    
-                    Meta Verified Business API Partner
-                
+    <section class="features">
+        <div class="features-header reveal">
+            <div class="section-label"><span class="dot"></span> Platform Capabilities</div>
+            <h2 class="section-title">Everything you need to<br>master WhatsApp marketing</h2>
+            <p class="section-subtitle">From verified business profiles to intelligent chatbots, MetaAdsFlow gives you enterprise-grade tools without the complexity.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card reveal reveal-delay-1">
+                <div class="feature-icon indigo"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M12 15v2m-6 4h12a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2zm10-10V7a4 4 0 0 0-8 0v4"/></svg></div>
+                <h3 class="feature-title">Meta Verified Badge</h3>
+                <p class="feature-desc">Get the official green verification badge. Build instant trust with every message you send to customers.</p>
+            </div>
+            <div class="feature-card reveal reveal-delay-2">
+                <div class="feature-icon emerald"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-5l-5 5v-5z"/></svg></div>
+                <h3 class="feature-title">Smart Chatbot Builder</h3>
+                <p class="feature-desc">Design conversational flows with our visual builder. Automate FAQs, bookings, and support without code.</p>
+            </div>
+            <div class="feature-card reveal reveal-delay-3">
+                <div class="feature-icon rose"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M11 5.882V19.24a1.76 1.76 0 0 0 1.76 1.76h1.5a1.76 1.76 0 0 0 1.76-1.76V5.882a1.76 1.76 0 0 0-1.76-1.76h-1.5A1.76 1.76 0 0 0 11 5.882z"/><path d="M7 9H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M17 9h2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2"/></svg></div>
+                <h3 class="feature-title">Broadcast Campaigns</h3>
+                <p class="feature-desc">Send template messages to thousands at once. Segment audiences, schedule sends, and track every delivery.</p>
+            </div>
+            <div class="feature-card reveal reveal-delay-4">
+                <div class="feature-icon amber"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M21 12a9 9 0 0 1-9 9m9-9a9 9 0 0 0-9-9m9 9H3m9 9a9 9 0 0 1-9-9m9 9c1.66 0 3-4 3-9s-1.34-9-3-9m0 18c-1.66 0-3-4-3-9s1.34-9 3-9"/></svg></div>
+                <h3 class="feature-title">Real-Time Analytics</h3>
+                <p class="feature-desc">Monitor sent, delivered, read, and replied metrics live. Export reports and optimize your messaging strategy.</p>
+            </div>
+            <div class="feature-card reveal reveal-delay-5">
+                <div class="feature-icon blue"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M4 4v16h16V4H4zm2 2h12v12H6V6zm3 3h6v2H9V9zm0 4h6v2H9v-2z"/></svg></div>
+                <h3 class="feature-title">REST API Access</h3>
+                <p class="feature-desc">Integrate WhatsApp into your existing stack. Full REST API with webhooks, SDKs, and detailed documentation.</p>
+            </div>
+            <div class="feature-card reveal reveal-delay-6">
+                <div class="feature-icon violet"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+                <h3 class="feature-title">Team Collaboration</h3>
+                <p class="feature-desc">Assign conversations, set roles, and manage your entire team from one dashboard. No message left unanswered.</p>
+            </div>
+        </div>
+    </section>
 
-                
-                    Scale
-                    your
-                    business
-                    with
-                    WhatsApp
-                    automation
-                
+    <section class="how-it-works">
+        <div class="how-header reveal">
+            <div class="section-label"><span class="dot"></span> Getting Started</div>
+            <h2 class="section-title">Up and running<br>in three steps</h2>
+            <p class="section-subtitle">No complex setup. No technical expertise required. Connect your WhatsApp Business number and start sending in minutes.</p>
+        </div>
+        <div class="steps">
+            <div class="step-card reveal reveal-delay-1">
+                <div class="step-number">1</div>
+                <h3 class="step-title">Connect Your Number</h3>
+                <p class="step-desc">Sign up and link your WhatsApp Business number through our guided setup. We handle the Meta verification process for you.</p>
+            </div>
+            <div class="step-card reveal reveal-delay-2">
+                <div class="step-number">2</div>
+                <h3 class="step-title">Build Your Flows</h3>
+                <p class="step-desc">Create message templates, design chatbot flows, and import your contact lists. Our template library gets you started fast.</p>
+            </div>
+            <div class="step-card reveal reveal-delay-3">
+                <div class="step-number">3</div>
+                <h3 class="step-title">Launch and Scale</h3>
+                <p class="step-desc">Send your first campaign, monitor results in real-time, and scale to millions of messages. We grow with your business.</p>
+            </div>
+        </div>
+    </section>
 
-                
-                    Send campaigns, automate conversations, and convert leads at scale. 
-                    The complete WhatsApp Business API platform trusted by growing teams worldwide.
-                
+    <section class="pricing">
+        <div class="pricing-header reveal">
+            <div class="section-label"><span class="dot"></span> Simple Pricing</div>
+            <h2 class="section-title">Plans that scale<br>with your growth</h2>
+            <p class="section-subtitle">Start free, upgrade when ready. No hidden fees. Cancel anytime. Every plan includes our core WhatsApp API features.</p>
+            <div class="pricing-toggle">
+                <span id="monthlyLabel" class="pricing-toggle-label active">Monthly</span>
+                <div class="toggle-switch" id="billingToggle" onclick="toggleBilling()"></div>
+                <span id="yearlyLabel" class="pricing-toggle-label">Yearly</span>
+                <span class="pricing-save">Save 20%</span>
+            </div>
+        </div>
+        <div class="pricing-grid">
+            <div class="price-card reveal reveal-delay-1">
+                <div class="price-plan-name">Basic</div>
+                <div class="price-headline">For small businesses getting started with WhatsApp</div>
+                <div class="price-amount">
+                    <span class="price-currency">$</span>
+                    <span class="price-value" data-monthly="29" data-yearly="23.20">29</span>
+                </div>
+                <div class="price-period">per month</div>
+                <div class="price-billing" data-monthly="Billed monthly" data-yearly="Billed yearly">Billed monthly</div>
+                <ul class="price-features">
+                    <li><svg class="check" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>1,000 conversations/month</li>
+                    <li><svg class="check" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>1 WhatsApp number</li>
+                    <li><svg class="check" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Basic chatbot builder</li>
+                    <li><svg class="check" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Campaign broadcasts</li>
+                    <li><svg class="check" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>2 team members</li>
+                    <li><svg class="check" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Email support</li>
+                </ul>
+                <a href="#" class="btn btn-glass price-cta">Get Started</a>
+            </div>
+            <div class="price-card popular reveal reveal-delay-2">
+                <div class="popular-badge">Most Popular</div>
+                <div class="price-plan-name">Pro</div>
+                <div class="price-headline">For growing teams that need automation and scale</div>
+                <div class="price-amount">
+                    <span class="price-currency">$</span>
+                    <span class="price-value" data-monthly="79" data-yearly="63.20">79</span>
+                </div>
+                <div class="price-period">per month</div>
+                <div class="price-billing" data-monthly="Billed monthly" data-yearly="Billed yearly">Billed monthly</div>
+                <ul class="price-features">
+                    <li><svg class="check" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>10,000 conversations/month</li>
+                    <li><svg class="check" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>3 WhatsApp numbers</li>
+                    <li><svg class="check" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Advanced chatbot with AI</li>
+                    <li><svg class="check" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Scheduled campaigns</li>
+                    <li><svg class="check" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>10 team members</li>
+                    <li><svg class="check" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>REST API access</li>
+                    <li><svg class="check" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Priority support</li>
+                </ul>
+                <a href="#" class="btn btn-primary price-cta">Start Free Trial</a>
+            </div>
+            <div class="price-card reveal reveal-delay-3">
+                <div class="price-plan-name">Enterprise</div>
+                <div class="price-headline">For large organizations with custom requirements</div>
+                <div class="price-amount">
+                    <span class="price-currency">$</span>
+                    <span class="price-value" data-monthly="199" data-yearly="159.20">199</span>
+                </div>
+                <div class="price-period">per month</div>
+                <div class="price-billing" data-monthly="Billed monthly" data-yearly="Billed yearly">Billed monthly</div>
+                <ul class="price-features">
+                    <li><svg class="check" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Unlimited conversations</li>
+                    <li><svg class="check" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Unlimited WhatsApp numbers</li>
+                    <li><svg class="check" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Custom chatbot integrations</li>
+                    <li><svg class="check" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Advanced analytics & reports</li>
+                    <li><svg class="check" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Unlimited team members</li>
+                    <li><svg class="check" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Dedicated account manager</li>
+                    <li><svg class="check" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>SLA guarantee & SSO</li>
+                </ul>
+                <a href="#" class="btn btn-glass price-cta">Contact Sales</a>
+            </div>
+        </div>
+    </section>
 
-                
-                    
-                        Start Free Trial
-                        
-                    
-                    
-                        See Features
-                    
-                
+    <section class="testimonials">
+        <div class="testimonials-header reveal">
+            <div class="section-label"><span class="dot"></span> What Teams Are Saying</div>
+            <h2 class="section-title">Trusted by businesses<br>across industries</h2>
+            <p class="section-subtitle">See how teams are using MetaAdsFlow to transform their customer communication and drive measurable results.</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card reveal reveal-delay-1">
+                <div class="testimonial-stars"><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
+                <p class="testimonial-text">"We replaced three separate tools with MetaAdsFlow. Campaign broadcasts, automated replies, and analytics all in one place. Our response time dropped from 4 hours to under 3 minutes."</p>
+                <div class="testimonial-author"><div class="testimonial-avatar" style="background:#4F46E5;">RK</div><div class="testimonial-info"><div class="testimonial-name">Rajesh Kumar</div><div class="testimonial-role">Head of Growth, ShopEasy</div></div></div>
+            </div>
+            <div class="testimonial-card reveal reveal-delay-2">
+                <div class="testimonial-stars"><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
+                <p class="testimonial-text">"The chatbot builder alone saved us 120 hours per month in customer support. Setup was straightforward and the API documentation is genuinely well-written. Rare for this space."</p>
+                <div class="testimonial-author"><div class="testimonial-avatar" style="background:#10B981;">SP</div><div class="testimonial-info"><div class="testimonial-name">Sarah Patel</div><div class="testimonial-role">CTO, FinanceHub</div></div></div>
+            </div>
+            <div class="testimonial-card reveal reveal-delay-3">
+                <div class="testimonial-stars"><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
+                <p class="testimonial-text">"We send over 50,000 order updates daily through MetaAdsFlow. The delivery rate is consistently above 98% and the team inbox keeps our support organized across 15 agents."</p>
+                <div class="testimonial-author"><div class="testimonial-avatar" style="background:#F59E0B;">AM</div><div class="testimonial-info"><div class="testimonial-name">Arjun Mehta</div><div class="testimonial-role">Operations Lead, QuickDeliver</div></div></div>
+            </div>
+        </div>
+    </section>
 
-                
-                    
-                        2.4M+
-                        Messages Sent
-                    
-                    
-                        98.7%
-                        Delivery Rate
-                    
-                    
-                        1,200+
-                        Active Businesses
-                    
-                
-            
+    <section class="cta-section">
+        <div class="cta-card reveal">
+            <h2 class="cta-title">Ready to transform your<br>customer conversations?</h2>
+            <p class="cta-desc">Join 1,200+ businesses already using MetaAdsFlow to reach customers on WhatsApp. Start your free trial today — no credit card required.</p>
+            <div class="cta-actions">
+                <a href="#" class="btn btn-white btn-lg">Start Free Trial</a>
+                <a href="#" class="btn btn-outline-white btn-lg">Talk to Sales</a>
+            </div>
+        </div>
+    </section>
 
-            
-                
-                    12,847 sent today
-                    
-                        
-                            
-                        
-                        
-                            MetaAdsFlow Bot
-                            
-                                
-                                Online
-                            
-                        
-                    
-                    
-                        
-                            Hi! Welcome to our store. How can I help you today?
-                        
-                        
-                            I'd like to check my order status
-                        
-                        
-                            Sure! Your order #4821 is out for delivery. Expected arrival: Today by 6 PM.
-                        
-                        
-                            That's great, thank you!
-                        
-                        
-                            
-                            
-                            
-                        
-                    
-                
-            
-        
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="nav-logo"><div class="nav-logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div><span class="nav-logo-text">Meta<span>AdsFlow</span></span></a>
+                    <p class="footer-brand-desc">The complete WhatsApp Business API platform for modern teams. Send, automate, and grow.</p>
+                </div>
+                <div class="footer-col"><h4>Product</h4><ul><li><a href="#">Features</a></li><li><a href="#">Pricing</a></li><li><a href="#">Integrations</a></li><li><a href="#">API Docs</a></li><li><a href="#">Changelog</a></li></ul></div>
+                <div class="footer-col"><h4>Company</h4><ul><li><a href="#">About</a></li><li><a href="#">Blog</a></li><li><a href="#">Careers</a></li><li><a href="#">Contact</a></li><li><a href="#">Partners</a></li></ul></div>
+                <div class="footer-col"><h4>Legal</h4><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li><li><a href="#">Security</a></li><li><a href="#">GDPR</a></li></ul></div>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom"><div class="footer-copyright">2025 MetaAdsFlow. All rights reserved.</div><div class="footer-socials"><a href="#" class="footer-social-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.3 9 4-1-2.2.2-4.8 2.4-5.8 2.2-1 4.6.3 5.6 2.2C22 5 24 4 24 4z"/></svg></a><a href="#" class="footer-social-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a><a href="#" class="footer-social-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a></div></div>
+        </div>
+    </footer>
+</div>
 
-        
-        
-            Trusted by teams at
-            
-                Freshworks
-                Razorpay
-                Meesho
-                PhonePe
-                Swiggy
-                Lenskart
-            
-        
-
-        
-        
-            
-                
-                    
-                    Platform Capabilities
-                
-                Everything you need tomaster WhatsApp marketing
-                
-                    From verified business profiles to intelligent chatbots, MetaAdsFlow gives you enterprise-grade tools without the complexity.
-                
-            
-
-            
-                
-                
-                    
-                        
-                    
-                    Meta Verified Badge
-                    Get the official green verification badge. Build instant trust with every message you send to customers.
-                
-
-                
-                
-                    
-                        
-                    
-                    Smart Chatbot Builder
-                    Design conversational flows with our visual builder. Automate FAQs, bookings, and support without code.
-                
-
-                
-                
-                    
-                        
-                    
-                    Broadcast Campaigns
-                    Send template messages to thousands at once. Segment audiences, schedule sends, and track every delivery.
-                
-
-                
-                
-                    
-                        
-                    
-                    Real-Time Analytics
-                    Monitor sent, delivered, read, and replied metrics live. Export reports and optimize your messaging strategy.
-                
-
-                
-                
-                    
-                        
-                    
-                    REST API Access
-                    Integrate WhatsApp into your existing stack. Full REST API with webhooks, SDKs, and detailed documentation.
-                
-
-                
-                
-                    
-                        
-                    
-                    Team Collaboration
-                    Assign conversations, set roles, and manage your entire team from one dashboard. No message left unanswered.
-                
-
-                
-                
-                    
-                        
-                    
-                    Template Manager
-                    Create, submit, and manage message templates. Get faster approvals with our compliance-checked suggestions.
-                
-
-                
-                
-                    
-                        
-                    
-                    Enterprise Security
-                    End-to-end encryption, SOC 2 compliance, and role-based access controls. Your data stays protected, always.
-                
-            
-        
-
-        
-        
-            
-                
-                    
-                    Getting Started
-                
-                Up and runningin three steps
-                
-                    No complex setup. No technical expertise required. Connect your WhatsApp Business number and start sending in minutes.
-                
-            
-
-            
-                
-                    1
-                    Connect Your Number
-                    Sign up and link your WhatsApp Business number through our guided setup. We handle the Meta verification process for you.
-                
-
-                
-                    2
-                    Build Your Flows
-                    Create message templates, design chatbot flows, and import your contact lists. Our template library gets you started fast.
-                
-
-                
-                    3
-                    Launch and Scale
-                    Send your first campaign, monitor results in real-time, and scale to millions of messages. We grow with your business.
-                
-            
-        
-
-        
-        
-            
-                
-                    
-                    Simple Pricing
-                
-                Plans that scalewith your growth
-                
-                    Start free, upgrade when ready. No hidden fees. Cancel anytime. Every plan includes our core WhatsApp API features.
-                
-
-                
-                    Monthly
-                    
-                    Yearly
-                    Save 20%
-                
-            
-
-            
-                
-                
-                    Basic
-                    For small businesses getting started with WhatsApp
-                    
-                        $
-                        29
-                    
-                    per month
-                    Billed monthly
-                    
-                        
-                            
-                            1,000 conversations/month
-                        
-                        
-                            
-                            1 WhatsApp number
-                        
-                        
-                            
-                            Basic chatbot builder
-                        
-                        
-                            
-                            Campaign broadcasts
-                        
-                        
-                            
-                            2 team members
-                        
-                        
-                            
-                            Email support
-                        
-                    
-                    Get Started
-                
-
-                
-                
-                    Most Popular
-                    Pro
-                    For growing teams that need automation and scale
-                    
-                        $
-                        79
-                    
-                    per month
-                    Billed monthly
-                    
-                        
-                            
-                            10,000 conversations/month
-                        
-                        
-                            
-                            3 WhatsApp numbers
-                        
-                        
-                            
-                            Advanced chatbot with AI
-                        
-                        
-                            
-                            Scheduled campaigns
-                        
-                        
-                            
-                            10 team members
-                        
-                        
-                            
-                            REST API access
-                        
-                        
-                            
-                            Priority support
-                        
-                    
-                    Start Free Trial
-                
-
-                
-                
-                    Enterprise
-                    For large organizations with custom requirements
-                    
-                        $
-                        199
-                    
-                    per month
-                    Billed monthly
-                    
-                        
-                            
-                            Unlimited conversations
-                        
-                        
-                            
-                            Unlimited WhatsApp numbers
-                        
-                        
-                            
-                            Custom chatbot integrations
-                        
-                        
-                            
-                            Advanced analytics & reports
-                        
-                        
-                            
-                            Unlimited team members
-                        
-                        
-                            
-                            Dedicated account manager
-                        
-                        
-                            
-                            SLA guarantee & SSO
-                        
-                    
-                    Contact Sales
-                
-            
-        
-
-        
-        
-            
-                
-                    
-                    What Teams Are Saying
-                
-                Trusted by businessesacross industries
-                
-                    See how teams are using MetaAdsFlow to transform their customer communication and drive measurable results.
-                
-            
-
-            
-                
-                    
-                        
-                        
-                        
-                        
-                        
-                    
-                    "We replaced three separate tools with MetaAdsFlow. Campaign broadcasts, automated replies, and analytics all in one place. Our response time dropped from 4 hours to under 3 minutes."
-                    
-                        RK
-                        
-                            Rajesh Kumar
-                            Head of Growth, ShopEasy
-                        
-                    
-                
-
-                
-                    
-                        
-                        
-                        
-                        
-                        
-                    
-                    "The chatbot builder alone saved us 120 hours per month in customer support. Setup was straightforward and the API documentation is genuinely well-written. Rare for this space."
-                    
-                        SP
-                        
-                            Sarah Patel
-                            CTO, FinanceHub
-                        
-                    
-                
-
-                
-                    
-                        
-                        
-                        
-                        
-                        
-                    
-                    "We send over 50,000 order updates daily through MetaAdsFlow. The delivery rate is consistently above 98% and the team inbox keeps our support organized across 15 agents."
-                    
-                        AM
-                        
-                            Arjun Mehta
-                            Operations Lead, QuickDeliver
-                        
-                    
-                
-            
-        
-
-        
-        
-            
-                Ready to transform yourcustomer conversations?
-                Join 1,200+ businesses already using MetaAdsFlow to reach customers on WhatsApp. Start your free trial today — no credit card required.
-                
-                    
-                        Start Free Trial
-                        
-                    
-                    Talk to Sales
-                
-            
-        
-
-        
-        
-            
-                
-                    
-                        
-                            
-                                
-                            
-                            MetaAdsFlow
-                        
-                        The complete WhatsApp Business API platform for modern teams. Send, automate, and grow.
-                    
-
-                    
-                        Product
-                        
-                            Features
-                            Pricing
-                            Integrations
-                            API Docs
-                            Changelog
-                        
-                    
-
-                    
-                        Company
-                        
-                            About
-                            Blog
-                            Careers
-                            Contact
-                            Partners
-                        
-                    
-
-                    
-                        Legal
-                        
-                            Privacy Policy
-                            Terms of Service
-                            Security
-                            GDPR
-                        
-                    
-                
-
-                
-
-                
-                    2025 MetaAdsFlow. All rights reserved.
-                    
-                        
-                            
-                        
-                        
-                            
-                        
-                        
-                            
-                        
-                    
-                
-            
-        
-    
-
-    
-        // ==================== SCROLL REVEAL ====================
-        const revealElements = document.querySelectorAll('.reveal');
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -40px 0px'
+<script>
+    // ==================== SCROLL REVEAL ====================
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
         });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    revealElements.forEach(el => revealObserver.observe(el));
 
-        revealElements.forEach(el => revealObserver.observe(el));
+    // ==================== NAV SCROLL ====================
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 60) nav.classList.add('scrolled');
+        else nav.classList.remove('scrolled');
+    });
 
-        // ==================== NAV SCROLL ====================
-        const nav = document.getElementById('nav');
-        let lastScroll = 0;
+    // ==================== MOBILE MENU ====================
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    function toggleMobileMenu() {
+        hamburger.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    }
+    hamburger.addEventListener('click', toggleMobileMenu);
+    document.querySelectorAll('#mobileMenu a').forEach(link => link.addEventListener('click', toggleMobileMenu));
 
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.scrollY;
-            if (currentScroll > 60) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-            lastScroll = currentScroll;
+    // ==================== DESKTOP: Show Sign In ====================
+    const signInBtn = document.getElementById('signInBtn');
+    function checkDesktop() {
+        if (window.innerWidth >= 1024 && signInBtn) signInBtn.style.display = 'inline-flex';
+        else if (signInBtn) signInBtn.style.display = 'none';
+    }
+    checkDesktop();
+    window.addEventListener('resize', checkDesktop);
+
+    // ==================== PRICING TOGGLE ====================
+    let isYearly = false;
+    window.toggleBilling = function() {
+        isYearly = !isYearly;
+        const toggle = document.getElementById('billingToggle');
+        const monthlyLabel = document.getElementById('monthlyLabel');
+        const yearlyLabel = document.getElementById('yearlyLabel');
+        toggle.classList.toggle('active', isYearly);
+        monthlyLabel.classList.toggle('active', !isYearly);
+        yearlyLabel.classList.toggle('active', isYearly);
+        document.querySelectorAll('.price-value').forEach(el => {
+            el.textContent = isYearly ? el.dataset.yearly : el.dataset.monthly;
         });
+        document.querySelectorAll('.price-billing').forEach(el => {
+            el.textContent = isYearly ? el.dataset.yearly : el.dataset.monthly;
+        });
+    };
 
-        // ==================== MOBILE MENU ====================
-        const hamburger = document.getElementById('hamburger');
-        const mobileMenu = document.getElementById('mobileMenu');
+    // ==================== LIVE COUNTER ====================
+    let count = 12847;
+    const liveCounter = document.getElementById('liveCounter');
+    setInterval(() => {
+        count += Math.floor(Math.random() * 5) + 1;
+        liveCounter.textContent = count.toLocaleString() + ' sent today';
+    }, 3000);
 
-        function toggleMobileMenu() {
-            hamburger.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-        }
-
-        function closeMobileMenu() {
-            hamburger.classList.remove('active');
-            mobileMenu.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        // ==================== DESKTOP: Show Sign In ====================
-        const navCta = document.getElementById('navCta');
-        const signInBtn = navCta?.previousElementSibling;
-
-        function checkDesktop() {
-            if (window.innerWidth >= 1024 && signInBtn) {
-                signInBtn.style.display = 'inline-flex';
-            } else if (signInBtn) {
-                signInBtn.style.display = 'none';
+    // ==================== MESSAGE COUNTER ANIMATION ====================
+    const msgCounter = document.getElementById('msgCounter');
+    let msgAnimated = false;
+    const msgObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !msgAnimated) {
+                msgAnimated = true;
+                let start = 0, end = 2400000, duration = 2000, startTime = null;
+                function animate(now) {
+                    if (!startTime) startTime = now;
+                    const progress = Math.min((now - startTime) / duration, 1);
+                    const eased = 1 - Math.pow(1 - progress, 4);
+                    const current = Math.floor(start + (end - start) * eased);
+                    if (current >= 1000000) msgCounter.textContent = (current / 1000000).toFixed(1) + 'M+';
+                    else if (current >= 1000) msgCounter.textContent = (current / 1000).toFixed(0) + 'K+';
+                    else msgCounter.textContent = current + '+';
+                    if (progress < 1) requestAnimationFrame(animate);
+                }
+                requestAnimationFrame(animate);
+                msgObserver.unobserve(entry.target);
             }
-        }
+        });
+    }, { threshold: 0.5 });
+    if (msgCounter) msgObserver.observe(msgCounter);
 
-        checkDesktop();
-        window.addEventListener('resize', checkDesktop);
+    // ==================== BUTTON RIPPLE ====================
+    document.querySelectorAll('.btn-primary').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            const ripple = document.createElement('span');
+            ripple.classList.add('btn-ripple');
+            const rect = this.getBoundingClientRect();
+            ripple.style.left = (e.clientX - rect.left) + 'px';
+            ripple.style.top = (e.clientY - rect.top) + 'px';
+            ripple.style.width = ripple.style.height = Math.max(rect.width, rect.height) + 'px';
+            this.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 600);
+        });
+    });
 
-        // ==================== PRICING TOGGLE ====================
-        let isYearly = false;
-
-        function toggleBilling() {
-            isYearly = !isYearly;
-            const toggle = document.getElementById('billingToggle');
-            const monthlyLabel = document.getElementById('monthlyLabel');
-            const yearlyLabel = document.getElementById('yearlyLabel');
-
-            toggle.classList.toggle('active', isYearly);
-            monthlyLabel.classList.toggle('active', !isYearly);
-            yearlyLabel.classList.toggle('active', isYearly);
-
-            document.querySelectorAll('.price-value').forEach(el => {
-                const monthly = el.dataset.monthly;
-                const yearly = el.dataset.yearly;
-                el.textContent = isYearly ? yearly : monthly;
-            });
-
-            document.querySelectorAll('.price-billing').forEach(el => {
-                const monthly = el.dataset.monthly;
-                const yearly = el.dataset.yearly;
-                el.textContent = isYearly ? yearly : monthly;
-            });
-        }
-
-        // ==================== LIVE COUNTER ====================
-        const liveCounter = document.getElementById('liveCounter');
-        let count = 12847;
-
-        function updateCounter() {
-            count += Math.floor(Math.random() * 5) + 1;
-            liveCounter.textContent = count.toLocaleString() + ' sent today';
-        }
-
-        setInterval(updateCounter, 3000);
-
-        // ==================== MESSAGE COUNTER ANIMATION ====================
-        const msgCounter = document.getElementById('msgCounter');
-        let msgCount = 2400000;
-        let targetCount = 2400000;
-        let msgAnimated = false;
-
-        const msgObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !msgAnimated) {
-                    msgAnimated = true;
-                    animateCount(0, targetCount, 2000);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        if (msgCounter) {
-            msgObserver.observe(msgCounter);
-        }
-
-        function animateCount(start, end, duration) {
-            const startTime = performance.now();
-            function update(currentTime) {
-                const elapsed = currentTime - startTime;
-                const progress = Math.min(elapsed / duration, 1);
-                const eased = 1 - Math.pow(1 - progress, 4);
-                const current = Math.floor(start + (end - start) * eased);
-
-                if (current >= 1000000) {
-                    msgCounter.textContent = (current / 1000000).toFixed(1) + 'M+';
-                } else if (current >= 1000) {
-                    msgCounter.textContent = (current / 1000).toFixed(0) + 'K+';
-                } else {
-                    msgCounter.textContent = current + '+';
-                }
-
-                if (progress < 1) {
-                    requestAnimationFrame(update);
-                }
-            }
-            requestAnimationFrame(update);
-        }
-
-        // ==================== BUTTON RIPPLE ====================
-        document.querySelectorAll('.btn-primary').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                const ripple = document.createElement('span');
-                ripple.classList.add('btn-ripple');
+    // ==================== 3D CARD TILT (Desktop only) ====================
+    if (window.matchMedia('(min-width: 1024px)').matches) {
+        document.querySelectorAll('.feature-card, .price-card, .testimonial-card, .step-card').forEach(card => {
+            card.addEventListener('mousemove', function(e) {
                 const rect = this.getBoundingClientRect();
-                ripple.style.left = (e.clientX - rect.left) + 'px';
-                ripple.style.top = (e.clientY - rect.top) + 'px';
-                ripple.style.width = ripple.style.height = Math.max(rect.width, rect.height) + 'px';
-                this.appendChild(ripple);
-                setTimeout(() => ripple.remove(), 600);
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / centerY * -3;
+                const rotateY = (x - centerX) / centerX * 3;
+                this.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = '';
             });
         });
+    }
 
-        // ==================== 3D CARD TILT (Desktop only) ====================
-        if (window.matchMedia('(min-width: 1024px)').matches) {
-            document.querySelectorAll('.feature-card, .price-card, .testimonial-card, .step-card').forEach(card => {
-                card.addEventListener('mousemove', function(e) {
-                    const rect = this.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-                    const rotateX = (y - centerY) / centerY * -3;
-                    const rotateY = (x - centerX) / centerX * 3;
-
-                    this.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+    // ==================== PARALLAX BLOBS ====================
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                const scrollY = window.scrollY;
+                document.querySelectorAll('.blob').forEach((blob, i) => {
+                    const speed = 0.02 + (i * 0.008);
+                    blob.style.transform = `translateY(${scrollY * speed}px)`;
                 });
-
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = '';
-                });
+                ticking = false;
             });
+            ticking = true;
         }
+    });
+</script>
 
-        // ==================== PARALLAX BLOBS ====================
-        let ticking = false;
-
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                requestAnimationFrame(() => {
-                    const scrollY = window.scrollY;
-                    const blobs = document.querySelectorAll('.blob');
-                    blobs.forEach((blob, i) => {
-                        const speed = 0.02 + (i * 0.008);
-                        blob.style.transform += '';
-                        const currentTransform = getComputedStyle(blob).transform;
-                        blob.style.marginTop = -(scrollY * speed) + 'px';
-                    });
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        });
-    
-
-
+</body>
+</html>
