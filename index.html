@@ -1,44 +1,4 @@
-Core Mission
-Visitors should feel delight, curiosity, and trust within 3 seconds.
-The design must not look AI‑generated – add human‑touch details, organic spacing, custom micro‑interactions, and an immersive atmosphere.
-No dark theme – keep the background light, airy, with soft gradients.
-Mobile‑first (90% users on phone), but desktop has its own distinct layout (not just a stretched mobile version).
-Design Style – Liquid Glass + Glassmorphism + 3D Immersion
-Glass cards: backdrop-filter: blur(20px), semi‑transparent white backgrounds, subtle borders, soft shadows.
-Background: Light gradient with animated, slow‑moving 3D‑like blobs (soft indigo, emerald, rose) that create depth.
-3D & immersive elements: Use subtle 3D transforms on cards (e.g., slight tilt on hover), parallax scrolling effects, and layered depth (z‑index stacks). Do NOT use heavy WebGL – pure CSS 3D transforms and smooth transitions.
-Micro‑interactions: Hover lifts, button ripple, smooth scroll‑triggered reveals, typing‑like entrance for hero text, animated icons.
-Animations & Motion (Make it memorable)
-Hero section: Text fades in with a staggered word animation, a floating 3D chat bubble that wobbles gently, and a live‑like message counter that ticks up.
-Scroll effects: Sections fade up with a subtle parallax (background blobs move slower than content). Cards slide in from edges.
-Hover effects: Cards lift with a 3D rotation (transform: perspective(800px) rotateX(2deg) rotateY(2deg)), border glow intensifies, icon spins.
-No gimmicks: No confetti, no flower rain, no cartoon explosions – keep it premium and professional.
-Content Sections (Claude, you decide the exact structure, but include these)
-Hero – Headline, subheadline, two CTAs ("Start Free Trial", "See Features"). An abstract 3D chat preview (CSS‑only, no external images) showing message bubbles appearing with a typing indicator.
-Features Grid – 6–8 features (Meta Verified, Chatbot, Campaigns, Analytics, API, Team, etc.). Each as a glass card with icon, title, short description. On mobile: 2 columns, desktop: 3–4 columns. Hover lift + 3D tilt.
-Pricing Section – Use the existing Laravel helpers (getPaidPlans(), formatAmount(), etc.) – but design the visual cards. Do NOT hardcode prices. Show 3 plans (BASIC, PRO, ENTERPRISE). Highlight the most popular plan with a subtle animated gradient border.
-Footer – Simple glass footer with links and copyright.
-Mobile vs Desktop – Separate Layouts
-Mobile (≤640px): Single column, bottom navigation (not needed on home page, but keep top nav hamburger). Cards stack. Touch targets ≥44px.
-Desktop (≥1024px): Multi‑column, side navigation or top nav, larger cards, hover effects, parallax blobs.
-What Claude Design must deliver
-A high‑fidelity prototype with at least two artboards: Mobile (390×844) and Desktop (1440×900).
-Developer Handoff card with design tokens (colors, glass values, spacing, animation specs, breakpoints).
-No placeholder text – use realistic copy for a WhatsApp SaaS.
-No dark theme – keep it light, bright, premium.
-No copy‑paste from templates – invent an original layout and motion language.
-Proceed. Create a home page that visitors will remember and share.
-
-Make professional Home Page UI Don't use emojys cartoons style avoide emojes
-
-
-model avatar
-I'll create a stunning, professional MetaAdsFlow homepage with liquid glass design, 3D immersion, and memorable micro-interactions.
-
-
-    
-    
-    MetaAdsFlow – WhatsApp Business API Platform
+MetaAdsFlow – WhatsApp Business API Platform
     
     
         /* ==================== DESIGN TOKENS ==================== */
@@ -2563,33 +2523,3 @@ I'll create a stunning, professional MetaAdsFlow homepage with liquid glass desi
     
 
 
-Developer Handoff — Design Tokens
-Color System
-Token	Value	Usage
---color-primary	#4F46E5	CTAs, links, accents
---color-emerald	#10B981	Success, verification
---color-rose	#F43F5E	Alerts, emphasis
---color-amber	#F59E0B	Stars, warnings
-Glass Values
-Property	Value
-Background	rgba(255,255,255,0.65)
-Blur	20px
-Border	rgba(255,255,255,0.45)
-Shadow	0 8px 32px rgba(0,0,0,0.06)
-Hover Shadow	0 20px 60px rgba(79,70,229,0.12)
-Spacing Scale
-12 → 16 → 20 → 24 → 32 → 40 → 48 → 56 → 80 → 120px
-
-Animation Specs
-Interaction	Duration	Easing
-Fast hover	200ms	ease
-Smooth transition	400ms	cubic-bezier(0.16,1,0.3,1)
-Spring bounce	600ms	cubic-bezier(0.34,1.56,0.64,1)
-Scroll reveal	800ms	cubic-bezier(0.16,1,0.3,1)
-3D card tilt	±3deg	Follows mouse position
-Breakpoints
-Name	Width	Layout
-Mobile	≤639px	1-2 columns, stacked
-Tablet	768px+	3-col pricing, grid footer
-Desktop	1024px+	Side-by-side hero, 3D tilt, nav links
-Large	1280px+	4-col features grid
